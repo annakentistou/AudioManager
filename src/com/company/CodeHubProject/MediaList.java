@@ -3,10 +3,7 @@ package com.company.CodeHubProject;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
-import java.text.DateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.Scanner;
+import java.util.*;
 
 public class MediaList {
     private ArrayList<Media> media = new ArrayList<>();
@@ -55,14 +52,23 @@ public class MediaList {
 
     }
 
-    public void searchMediaList(Media media) {
+    public Media searchMaxSize() {
+
+        return media.stream().max(Comparator.comparing(Media::getSize)).get();
 
     }
 
-    public void updateList() {
-
+    public Media searchMinDuration(){
+        return media.stream().min(Comparator.comparing(Media::getDuration)).get();
     }
 
+    public float totalDuration(){
+        float totalDuration = 0.0f;
+        for (int i = 0; i < media.size(); i++) {
+            totalDuration += media.get(i).getDuration();
+        }
+        return totalDuration;
+    }
 
     public float averageDuration() {
         float mediaListSize = 0.0f;
@@ -75,7 +81,7 @@ public class MediaList {
         return averageDuration;
     }
 
-/*    public void loadMediaList(String filename){
+   /* public void loadMediaList(String filename){
         //clear basket before loading
         media.clear();
         try {
@@ -85,8 +91,10 @@ public class MediaList {
                 String[] words = line.split(", ");
                 Media archive = new Media(words[0],
                         words[1],
-                        Byte.parseByte(words[2]),
-                        (words[3]));
+                        Float.parseFloat(words[2]),
+                        Date.(words[3]),
+                        Float.parseFloat(words[4]),
+                        words[5]);
                 media.add(archive);
             }
 

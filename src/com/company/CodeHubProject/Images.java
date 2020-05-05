@@ -21,8 +21,8 @@ public class Images extends Media{
 
     @Override
     public String toString() {
-        return super.toString()+" Images{" +
-                " photographer='" + photographer + '\'' +
+        return super.toString()+"Images{" +
+                "photographer='" + photographer + '\'' +
                 '}';
     }
 }

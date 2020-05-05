@@ -31,7 +31,7 @@ public class Videos extends Media{
     @Override
     public String toString() {
         return super.toString()+ " Videos{" +
-                " duration='" + duration + '\'' +
+                " duration=" + duration +
                 ", producer='" + producer + '\'' +
                 '}';
     }

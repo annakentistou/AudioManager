@@ -17,12 +17,12 @@ public class UI {
         System.out.println("1. Create Medialist "
                 + "2. Delete Medialist "
                 + "3. Read Medialist "
-                + "4. Update Medialist "
-                + "5. Save Medialist "
-                + "6. Search a file in Medialist "
-                + "7. Total Files "
-                + "8. Total size of Medialist "
-                + "9. Load from file "
+                + "4. Save Medialist "
+                + "5. Search a file with criteria in Medialist (max size, min duration)"
+                + "6. Total Files "
+                + "7. Total size of Medialist "
+                + "8. Load from file "
+                + "9. Total duration of Medialist"
                 + "10. Average of duration "
                 + "0. Exit");
 
@@ -38,19 +38,19 @@ public class UI {
                 case 3:
                     return Choice.READ;
                 case 4:
-                    return Choice.UPDATE;
-                case 5:
                     return Choice.SAVE;
-                case 6:
+                case 5:
                     return Choice.SEARCH;
-                case 7:
+                case 6:
                     return Choice.TOTALFILES;
-                case 8:
+                case 7:
                     return Choice.TOTALSIZE;
-                case 9:
+                case 8:
                     return Choice.LOAD;
-                case 10:
+                case 9:
                     return Choice.TOTALDURATION;
+                case 10:
+                    return Choice.AVERAGEDURATION;
                 case 0:
                     return Choice.EXIT;
                 default:
@@ -81,7 +81,7 @@ public class UI {
         name = scanner.next();
         System.out.println("Give filetype");
         filetype = scanner.next();
-        System.out.println("Give size");
+        System.out.println("Give size in Mb");
         size = scanner.nextFloat();
         /*System.out.println("Give year");year = Integer.parseInt(scanner.next())-1900;
         System.out.println("Give month");month = Integer.parseInt(scanner.next())-1;
@@ -103,7 +103,7 @@ public class UI {
         Media archive;
         switch (mediaType) {
             case 1:
-                System.out.println("Give video's duration");
+                System.out.println("Give video's duration in sec ");
                 duration = scanner.nextFloat();
                 System.out.println("Give producer");
                 producer = scanner.next();
@@ -144,9 +144,6 @@ public class UI {
                 case READ:
                     mediaList.readList();
                     break;
-                case UPDATE:
-                    mediaList.updateList();
-                    break;
                 case SAVE:
                     mediaList.saveMediaList("media.txt");
                     break;
@@ -157,11 +154,17 @@ public class UI {
                     System.out.println("Total size of files: " + mediaList.getTotalSize());
                     break;
                 case TOTALDURATION:
-                    System.out.println("Total duration: "+mediaList.averageDuration());
+                    System.out.println("Total duration: "+mediaList.toString());
                     break;
-               /* case SEARCH:
-                    //mediaList.
-                    break;*/
+                case AVERAGEDURATION:
+                    System.out.println("Average duration: "+mediaList.averageDuration());
+                    break;
+                case SEARCH:
+                    Media maxSize = mediaList.searchMaxSize();
+                    System.out.println("Max file size: "+ maxSize.getSize());
+                    Media minDuration = mediaList.searchMinDuration();
+                    System.out.println("Max file duration: " + minDuration.getDuration());
+                    break;
                 case LOAD:
                     //mediaList.loadMediaList("media.txt");
                     break;

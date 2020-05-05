@@ -22,7 +22,8 @@ public class Audio extends Media{
     @Override
     public String toString() {
         return super.toString()+" Audio{" +
-                " composer='" + composer + '\'' +
+                "duration=" + duration +
+                ", composer='" + composer + '\'' +
                 '}';
     }
 }
